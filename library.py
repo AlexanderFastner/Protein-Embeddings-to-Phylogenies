@@ -135,6 +135,8 @@ class VariationalAutoencoder(pl.LightningModule):
         return loss    
     
     def validation_step(self, batch, batch_idx):
+        print(len(batch))
+        print(x, y = batch)
         x, y = batch
         y_pred = self(x)
         loss = torch.nn.functional.cross_entropy(y_pred, y)
@@ -159,16 +161,16 @@ class LossFunction(nn.Module):
     
 class makedataset(torch.utils.data.Dataset):
 
-    def __init__(self, headers, values):
+    def __init__(self, headers, embedding):
         self.headers = headers
-        self.values = values
-        assert len(self.headers) == len(self.values)
+        self.embedding = embedding
+        assert len(self.headers) == len(self.embedding)
 
     def __len__(self):
-        return len(self.values)
+        return len(self.embedding)
 
     def __getitem__(self, index):
-        data = {self.headers[i]: self.values[index, i] for i in range(len(self.headers))}
+        data = {"headers" : self.headers, "embedding" : self.embedding}
         return data
 
     
