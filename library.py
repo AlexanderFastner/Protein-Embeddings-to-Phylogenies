@@ -110,8 +110,42 @@ class VariationalAutoencoder(pl.LightningModule):
         z = self.reparameterize(mu, logvar)
         return self.decode(z), mu, logvar
     
-    #TODO add cross val
+    def training_step(self, batch, batch_idx):
+        # unpack the data
+        x, y = batch
 
+        # set the model to train
+        self.train()
+
+        # compute the output
+        y_hat = self(x)
+
+        # compute the loss
+        loss = self.loss(y_hat, y)
+
+        # log the metrics
+        self.log('train_loss', loss)
+
+        # compute the gradients
+        loss.backward()
+
+        # update the weights
+        self.optimizer.step()
+
+        return loss    
+    
+    def validation_step(self, batch, batch_idx):
+        x, y = batch
+        y_pred = self(x)
+        loss = torch.nn.functional.cross_entropy(y_pred, y)
+        acc = self.metrics_accuracy(y_pred, y)
+        batch_logs = {'val_loss': loss, 'val_acc': acc}
+        return {'val_loss': loss, 'log': batch_logs}
+    
+    def configure_optimizers(self):
+        optimizer = optim.Adam(self.parameters(), lr=1e-3)
+        return optimizer
+    
 class LossFunction(nn.Module):
 
     def __init__(self):
