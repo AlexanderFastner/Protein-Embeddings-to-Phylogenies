@@ -1,0 +1,440 @@
+TREE_COLORS
+SEPARATOR TAB
+DATA
+gzmk_Rhincodon_typus_GeneID109917821	range	#00FF00	Complement & Granzyme
+Erinaceus_europaeus_GeneID103126417	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102463197	range	#00FF00	Complement & Granzyme
+CFD_Canis_lupus	range	#00FF00	Complement & Granzyme
+Xenopus_tropicalis_GeneID496767	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID110439063	range	#00FF00	Complement & Granzyme
+PRSS57_Canis_lupus	range	#00FF00	Complement & Granzyme
+Rhincodon_typus_GeneID109917820	range	#00FF00	Complement & Granzyme
+Prss57_Mus_musculus_GeneID73106	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102461598	range	#00FF00	Complement & Granzyme
+GZMM_Alligator_sinensis_GeneID102386315	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID110439067	range	#00FF00	Complement & Granzyme
+PRSS57_Homo_sapiens_GeneID400668_isoform_1	range	#00FF00	Complement & Granzyme
+ELANE_Canis_lupus	range	#00FF00	Complement & Granzyme
+Erinaceus_europaeus_GeneID103126477	range	#00FF00	Complement & Granzyme
+Gzmc_Mus_musculus_GeneID14940_isoform_X2	range	#00FF00	Complement & Granzyme
+Alligator_sinensis_GeneID102387989	range	#00FF00	Complement & Granzyme
+Alligator_sinensis_GeneID102386560	range	#00FF00	Complement & Granzyme
+Rhincodon_typus_GeneID109917819	range	#00FF00	Complement & Granzyme
+Erinaceus_europaeus_GeneID103115097	range	#00FF00	Complement & Granzyme
+Rhincodon_typus_GeneID109931234	range	#00FF00	Complement & Granzyme
+Rhincodon_typus_GeneID109931235	range	#00FF00	Complement & Granzyme
+Alligator_sinensis_GeneID102372276	range	#00FF00	Complement & Granzyme
+GZMA_Canis_lupus	range	#00FF00	Complement & Granzyme
+Latimeria_chalumnae_GeneID102345749_isoform_X1	range	#00FF00	Complement & Granzyme
+GZMK_Canis_lupus	range	#00FF00	Complement & Granzyme
+Latimeria_chalumnae_GeneID102345749_isoform_X2	range	#00FF00	Complement & Granzyme
+gzmk_Danio_rerio_GeneID794999_isoform_X1	range	#00FF00	Complement & Granzyme
+gzma_Xenopus_tropicalis_GeneID100135014_isoform_X1	range	#00FF00	Complement & Granzyme
+Latimeria_chalumnae_GeneID102352566	range	#00FF00	Complement & Granzyme
+Latimeria_chalumnae_GeneID102346637	range	#00FF00	Complement & Granzyme
+gzmak_Xenopus_tropicalis_GeneID100497188	range	#00FF00	Complement & Granzyme
+Alligator_sinensis_GeneID102381206	range	#00FF00	Complement & Granzyme
+GZMK_Latimeria_chalumnae_GeneID102348943	range	#00FF00	Complement & Granzyme
+Elane_Mus_musculus_GeneID50701	range	#00FF00	Complement & Granzyme
+cfd_Xenopus_tropicalis_GeneID394945	range	#00FF00	Complement & Granzyme
+Alligator_sinensis_GeneID102381782_2	range	#00FF00	Complement & Granzyme
+Alligator_sinensis_GeneID102381782	range	#00FF00	Complement & Granzyme
+Alligator_sinensis_GeneID102371192	range	#00FF00	Complement & Granzyme
+Gzmm_Mus_musculus_GeneID16904_isoform_1	range	#00FF00	Complement & Granzyme
+GZMK_Erinaceus_europaeus_GeneID103109798	range	#00FF00	Complement & Granzyme
+Latimeria_chalumnae_GeneID102359481	range	#00FF00	Complement & Granzyme
+Gzmk_Mus_musculus_GeneID14945	range	#00FF00	Complement & Granzyme
+GZMA_Pelodiscus_sinensis_GeneID102462891	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102462956	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102455484	range	#00FF00	Complement & Granzyme
+GZMA_Homo_sapiens_GeneID3001	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID100034628_isoform_X2	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID100034472_isoform_X2	range	#00FF00	Complement & Granzyme
+Ctsg_Mus_musculus_GeneID13035	range	#00FF00	Complement & Granzyme
+Gzma_Mus_musculus_GeneID14938	range	#00FF00	Complement & Granzyme
+Erinaceus_europaeus_GeneID103109778	range	#00FF00	Complement & Granzyme
+CFD_Homo_sapiens_GeneID1675_isoform_2	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102462227	range	#00FF00	Complement & Granzyme
+GZMB_Canis_lupus	range	#00FF00	Complement & Granzyme
+Cfd_Mus_musculus_GeneID11537_isoform_1	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102455097	range	#00FF00	Complement & Granzyme
+Erinaceus_europaeus_GeneID103126571	range	#00FF00	Complement & Granzyme
+Erinaceus_europaeus_GeneID103126503	range	#00FF00	Complement & Granzyme
+Alligator_sinensis_GeneID102385169_isoform_X1	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102458929	range	#00FF00	Complement & Granzyme
+GZMM_Homo_sapiens_GeneID3004_isoform_1	range	#00FF00	Complement & Granzyme
+gzma_Danio_rerio_GeneID795070	range	#00FF00	Complement & Granzyme
+Erinaceus_europaeus_GeneID103109779	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID100001138	range	#00FF00	Complement & Granzyme
+CFD_Protobothrops_mucrosquamatus_GeneID107282291	range	#00FF00	Complement & Granzyme
+Alligator_sinensis_GeneID102383762	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102460125	range	#00FF00	Complement & Granzyme
+Latimeria_chalumnae_GeneID102352835	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID561111	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID558805	range	#00FF00	Complement & Granzyme
+XB17329844_Xenopus_tropicalis_GeneID100497492	range	#00FF00	Complement & Granzyme
+Prtn3_Mus_musculus_GeneID19152	range	#00FF00	Complement & Granzyme
+gzmh_Xenopus_tropicalis_GeneID496758	range	#00FF00	Complement & Granzyme
+Protobothrops_mucrosquamatus_GeneID107283810	range	#00FF00	Complement & Granzyme
+gzm3_Danio_rerio_GeneID100000986	range	#00FF00	Complement & Granzyme
+Gzmd_Mus_musculus_GeneID14941	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID110439068	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID101886682	range	#00FF00	Complement & Granzyme
+CTSG_Canis_lupus	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102450790	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID110439069	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID110439065	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID100034650	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID100034620	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID100034605	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID100034588	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID100034439	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID100001210	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID567711	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID556598	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102461984	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102454985	range	#00FF00	Complement & Granzyme
+gzma_Canis_lupus	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID556666	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102463428	range	#00FF00	Complement & Granzyme
+Erinaceus_europaeus_GeneID103126509	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID100034478	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID556860	range	#00FF00	Complement & Granzyme
+CMA1_Canis_lupus	range	#00FF00	Complement & Granzyme
+cfd_Danio_rerio_GeneID553553	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID112547189	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID106732597	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102462794	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102455167	range	#00FF00	Complement & Granzyme
+Latimeria_chalumnae_GeneID102347764	range	#00FF00	Complement & Granzyme
+Gzmn_Mus_musculus_GeneID245839_isoform_2	range	#00FF00	Complement & Granzyme
+Gzmg_Mus_musculus_GeneID14944	range	#00FF00	Complement & Granzyme
+Gzmf_Mus_musculus_GeneID14943	range	#00FF00	Complement & Granzyme
+Gzme_Mus_musculus_GeneID14942	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102459172	range	#00FF00	Complement & Granzyme
+Mcpt8_Mus_musculus_GeneID17231	range	#00FF00	Complement & Granzyme
+Gzmb_Mus_musculus_GeneID14939	range	#00FF00	Complement & Granzyme
+Erinaceus_europaeus_GeneID103126532	range	#00FF00	Complement & Granzyme
+Danio_rerio_GeneID100001065	range	#00FF00	Complement & Granzyme
+Cma1_Mus_musculus_GeneID17228	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102463263	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102459655	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102454582	range	#00FF00	Complement & Granzyme
+Mcpt9_Mus_musculus_GeneID17232	range	#00FF00	Complement & Granzyme
+Mcpt4_Mus_musculus_GeneID17227	range	#00FF00	Complement & Granzyme
+Mcpt1_Mus_musculus_GeneID17224	range	#00FF00	Complement & Granzyme
+GZMH_Homo_sapiens_GeneID2999_isoform_1	range	#00FF00	Complement & Granzyme
+Cma2_Mus_musculus_GeneID545055_isoform_1	range	#00FF00	Complement & Granzyme
+prtn3_Xenopus_tropicalis_GeneID448597	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102455240	range	#00FF00	Complement & Granzyme
+Mcpt2_Mus_musculus_GeneID17225	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102455738	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102454962	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102450564	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102458389	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102462771	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102455354	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102462712	range	#00FF00	Complement & Granzyme
+Erinaceus_europaeus_GeneID103126542	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102444467	range	#00FF00	Complement & Granzyme
+Erinaceus_europaeus_GeneID103126447	range	#00FF00	Complement & Granzyme
+Erinaceus_europaeus_GeneID103126550	range	#00FF00	Complement & Granzyme
+Rhincodon_typus_GeneID109917818	range	#00FF00	Complement & Granzyme
+Alligator_sinensis_GeneID102388738	range	#00FF00	Complement & Granzyme
+PRSS57_Alligator_sinensis_GeneID102388662	range	#00FF00	Complement & Granzyme
+Protobothrops_mucrosquamatus_GeneID114922240	range	#00FF00	Complement & Granzyme
+Latimeria_chalumnae_GeneID102354524	range	#00FF00	Complement & Granzyme
+CMA1_Canis_lupus_2	range	#00FF00	Complement & Granzyme
+Erinaceus_europaeus_GeneID103126437	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID106732480	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID106731344	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102453822	range	#00FF00	Complement & Granzyme
+Erinaceus_europaeus_GeneID103126486	range	#00FF00	Complement & Granzyme
+Alligator_sinensis_GeneID112548405	range	#00FF00	Complement & Granzyme
+Alligator_sinensis_GeneID102374953	range	#00FF00	Complement & Granzyme
+Alligator_sinensis_GeneID102388488	range	#00FF00	Complement & Granzyme
+Erinaceus_europaeus_GeneID103126467	range	#00FF00	Complement & Granzyme
+Alligator_sinensis_GeneID102367834	range	#00FF00	Complement & Granzyme
+Rhincodon_typus_GeneID109918005	range	#00FF00	Complement & Granzyme
+Latimeria_chalumnae_GeneID102345118	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102460362	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID106732481	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102462471	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID102454843	range	#00FF00	Complement & Granzyme
+Pelodiscus_sinensis_GeneID112547215	range	#00FF00	Complement & Granzyme
+Alligator_sinensis_GeneID112549762	range	#FF00FF	Reptilian KLKs
+Alsi_A_02	range	#FF00FF	Reptilian KLKs
+Laag_TKL4	range	#FF00FF	Reptilian KLKs
+Thel_TKL2	range	#FF00FF	Reptilian KLKs
+Protobothrops_mucrosquamatus_GeneID107288023	range	#FF00FF	Reptilian KLKs
+Vako_A_04	range	#FF00FF	Reptilian KLKs
+Alsi_B_01	range	#FF00FF	Reptilian KLKs
+Pesi_B_03	range	#FF00FF	Reptilian KLKs
+Pesi_A_04	range	#FF00FF	Reptilian KLKs
+Vako_A_05	range	#FF00FF	Reptilian KLKs
+Vako_A_03	range	#FF00FF	Reptilian KLKs
+Pesi_B_05	range	#FF00FF	Reptilian KLKs
+Pesi_A_05	range	#FF00FF	Reptilian KLKs
+Laag_TKL5	range	#FF00FF	Reptilian KLKs
+Pesi_A_02	range	#FF00FF	Reptilian KLKs
+Pesi_A_01	range	#FF00FF	Reptilian KLKs
+Vako_A_06	range	#FF00FF	Reptilian KLKs
+Thel_TKL1	range	#FF00FF	Reptilian KLKs
+PrmuB01	range	#FF00FF	Reptilian KLKs
+Pesi_A_03	range	#FF00FF	Reptilian KLKs
+Laag_TKL7	range	#FF00FF	Reptilian KLKs
+Pesi_B_06	range	#FF00FF	Reptilian KLKs
+Pesi_B_04	range	#FF00FF	Reptilian KLKs
+Alsi_A_01	range	#FF00FF	Reptilian KLKs
+Pesi_B_07	range	#FF00FF	Reptilian KLKs
+Nana_TKL2	range	#FF00FF	Reptilian KLKs
+Vako_A_02	range	#FF00FF	Reptilian KLKs
+Pesi_B_01	range	#FF00FF	Reptilian KLKs
+Nana_TKL1	range	#FF00FF	Reptilian KLKs
+Laag_TKL3	range	#FF00FF	Reptilian KLKs
+Pesi_A_06	range	#FF00FF	Reptilian KLKs
+Euma4	range	#FF00FF	Reptilian KLKs
+Alsi_A_06	range	#FF00FF	Reptilian KLKs
+Alsi_A_05	range	#FF00FF	Reptilian KLKs
+Euma5	range	#FF00FF	Reptilian KLKs
+Euma7	range	#FF00FF	Reptilian KLKs
+Alsi_A_03	range	#FF00FF	Reptilian KLKs
+Euma3	range	#FF00FF	Reptilian KLKs
+Nana_TKL3	range	#FF00FF	Reptilian KLKs
+Laag_TKL6	range	#FF00FF	Reptilian KLKs
+Euma6	range	#FF00FF	Reptilian KLKs
+Pelodiscus_sinensis_GeneID102446142	range	#FF00FF	Reptilian KLKs
+Pelodiscus_sinensis_GeneID112544765	range	#FF00FF	Reptilian KLKs
+Alligator_sinensis_GeneID102382711	range	#FF00FF	Reptilian KLKs
+PrmuB02	range	#FF00FF	Reptilian KLKs
+Alligator_sinensis_GeneID102369812	range	#FF00FF	Reptilian KLKs
+PRSS3_Homo_sapiens_GeneID5646_isoform_X1	range	#007FFF	Anionic trypsin II
+Latimeria_chalumnae_GeneID106701818	range	#007FFF	Anionic trypsin II
+PRSS2_Homo_sapiens_GeneID5645_isoform_1	range	#007FFF	Anionic trypsin II
+Erinaceus_europaeus_GeneID103112861	range	#007FFF	Anionic trypsin II
+Xetr_out6	range	#007FFF	Anionic trypsin II
+Xetr_out5	range	#007FFF	Anionic trypsin II
+Xetr_out4	range	#007FFF	Anionic trypsin II
+Vako_A_08	range	#007FFF	Anionic trypsin II
+Pelodiscus_sinensis_GeneID102445677	range	#007FFF	Anionic trypsin II
+Pelodiscus_sinensis_GeneID102443518	range	#007FFF	Anionic trypsin II
+Latimeria_chalumnae_GeneID102350107	range	#007FFF	Anionic trypsin II
+Alligator_sinensis_GeneID102385741	range	#007FFF	Anionic trypsin II
+Xetr_out3	range	#007FFF	Anionic trypsin II
+Xetr_out1	range	#007FFF	Anionic trypsin II
+TMPRSS11D_Lacerta_agilis_GeneID117060477	range	#007FFF	Anionic trypsin II
+Protobothrops_mucrosquamatus_GeneID107286912	range	#007FFF	Anionic trypsin II
+Protobothrops_mucrosquamatus_GeneID107286911	range	#007FFF	Anionic trypsin II
+Protobothrops_mucrosquamatus_GeneID107286910	range	#007FFF	Anionic trypsin II
+zgc_92590_Danio_rerio_GeneID474322	range	#007FFF	Anionic trypsin II
+PRSS2_Canis_lupus	range	#007FFF	Anionic trypsin II
+prss1_Danio_rerio_GeneID65223	range	#007FFF	Anionic trypsin II
+Protobothrops_mucrosquamatus_GeneID107286913	range	#007FFF	Anionic trypsin II
+Pelodiscus_sinensis_GeneID102445365	range	#007FFF	Anionic trypsin II
+Gm2663_Mus_musculus_GeneID100040208	range	#007FFF	Anionic trypsin II
+Alligator_sinensis_GeneID102385253	range	#007FFF	Anionic trypsin II
+Alligator_sinensis_GeneID102370737	range	#007FFF	Anionic trypsin II
+2210010C04Rik_Mus_musculus_GeneID67373	range	#007FFF	Anionic trypsin II
+1810009J06Rik_Mus_musculus_GeneID73626	range	#007FFF	Anionic trypsin II
+Try10_Mus_musculus_GeneID436522	range	#007FFF	Anionic trypsin II
+Try5_Mus_musculus_GeneID103964	range	#007FFF	Anionic trypsin II
+Try4_Mus_musculus_GeneID22074	range	#007FFF	Anionic trypsin II
+Prss3_Mus_musculus_GeneID22073	range	#007FFF	Anionic trypsin II
+Prss2_Mus_musculus_GeneID22072	range	#007FFF	Anionic trypsin II
+Prss1_Mus_musculus_GeneID114228	range	#007FFF	Anionic trypsin II
+Latimeria_chalumnae_GeneID102366613	range	#007FFF	Anionic trypsin II
+Gm10334_Mus_musculus_GeneID100040233	range	#007FFF	Anionic trypsin II
+Erinaceus_europaeus_GeneID103112822	range	#007FFF	Anionic trypsin II
+Erinaceus_europaeus_GeneID103112821	range	#007FFF	Anionic trypsin II
+Erinaceus_europaeus_GeneID103112820	range	#007FFF	Anionic trypsin II
+cationic_trypsin_Canis_lupus_familiaris_GeneID475521	range	#007FFF	Anionic trypsin II
+Alligator_sinensis_GeneID102370981_2	range	#007FFF	Anionic trypsin II
+Alligator_sinensis_GeneID102370981	range	#007FFF	Anionic trypsin II
+Pelodiscus_sinensis_GeneID102463318	range	#007FFF	Anionic trypsin II
+Gm5771_Mus_musculus_GeneID436523	range	#007FFF	Anionic trypsin II
+Rhincodon_typus_GeneID109924127_isoform_X1	range	#007FFF	Anionic trypsin II
+prss1_Xenopus_tropicalis_GeneID548509	range	#007FFF	Anionic trypsin II
+Xenopus_tropicalis_GeneID116406450	range	#007FFF	Anionic trypsin II
+Xenopus_tropicalis_GeneID101730988_isoform_X1	range	#007FFF	Anionic trypsin II
+Xenopus_tropicalis_GeneID496623	range	#007FFF	Anionic trypsin II
+try10_Xenopus_tropicalis_GeneID496640	range	#007FFF	Anionic trypsin II
+prss2_Xenopus_tropicalis_GeneID496627	range	#007FFF	Anionic trypsin II
+Pelodiscus_sinensis_GeneID102445111	range	#007FFF	Anionic trypsin II
+Danio_rerio_GeneID103908930	range	#007FFF	Anionic trypsin II
+Latimeria_chalumnae_GeneID102366350	range	#007FFF	Anionic trypsin II
+Latimeria_chalumnae_GeneID102349341	range	#007FFF	Anionic trypsin II
+Danio_rerio_GeneID100535672	range	#007FFF	Anionic trypsin II
+Danio_rerio_GeneID322453	range	#007FFF	Anionic trypsin II
+Rhincodon_typus_GeneID109924125	range	#007FFF	Anionic trypsin II
+Latimeria_chalumnae_GeneID102345227	range	#007FFF	Anionic trypsin II
+zgc_171509_Danio_rerio_GeneID100141339	range	#007FFF	Anionic trypsin II
+Rhincodon_typus_GeneID109924126_isoform_X1	range	#007FFF	Anionic trypsin II
+Rhincodon_typus_GeneID109924126_isoform_X2	range	#007FFF	Anionic trypsin II
+Alligator_sinensis_GeneID102385992	range	#007FFF	Anionic trypsin II
+SopaK6	range	#FF7F00	KLK6
+Mumu_Klk6	range	#FF7F00	KLK6
+Phci_A_09	range	#FF7F00	KLK6
+EreuK6	range	#FF7F00	KLK6
+Oran_A_10	range	#FF7F00	KLK6
+Hosa_KLK6	range	#FF7F00	KLK6
+Protobothrops_mucrosquamatus_GeneID107291374	range	#7FBF7F	Anionic trypsin I
+Alligator_sinensis_GeneID102387651	range	#7FBF7F	Anionic trypsin I
+zmp_0000001088_Danio_rerio_GeneID560086	range	#7FBF7F	Anionic trypsin I
+Pelodiscus_sinensis_GeneID102446786	range	#7FBF7F	Anionic trypsin I
+Rhincodon_typus_GeneID109925952	range	#7FBF7F	Anionic trypsin I
+Latimeria_chalumnae_GeneID102363265	range	#7FBF7F	Anionic trypsin I
+Danio_rerio_GeneID565078	range	#7FBF7F	Anionic trypsin I
+Latimeria_chalumnae_GeneID102356172	range	#7FBF7F	Anionic trypsin I
+Rhincodon_typus_GeneID109920168	range	#7FBF7F	Anionic trypsin I
+MumuKlk1b21	range	#5E06A4	Mammalian KLK1
+SopaB5	range	#5E06A4	Mammalian KLK1
+Oran_A_14	range	#5E06A4	Mammalian KLK1
+MumuKlk1b27	range	#5E06A4	Mammalian KLK1
+MumuKlk1b24	range	#5E06A4	Mammalian KLK1
+Hosa_KLK1	range	#5E06A4	Mammalian KLK1
+MumuKlk1b26	range	#5E06A4	Mammalian KLK1
+MumuKlk1b16	range	#5E06A4	Mammalian KLK1
+MumuKlk1b11	range	#5E06A4	Mammalian KLK1
+MumuKlk1b9	range	#5E06A4	Mammalian KLK1
+MumuKlk1b5	range	#5E06A4	Mammalian KLK1
+MumuKlk1b3	range	#5E06A4	Mammalian KLK1
+MumuKlk1b1	range	#5E06A4	Mammalian KLK1
+Mumu_Klk1b8	range	#5E06A4	Mammalian KLK1
+KLK1_Canis_lupus	range	#5E06A4	Mammalian KLK1
+Hosa_KLK3	range	#5E06A4	Mammalian KLK1
+Hosa_KLK2	range	#5E06A4	Mammalian KLK1
+Erinaceus_europaeus_GeneID103120812	range	#5E06A4	Mammalian KLK1
+Erinaceus_europaeus_GeneID103120810	range	#5E06A4	Mammalian KLK1
+EreuK1b	range	#5E06A4	Mammalian KLK1
+EreuK1a	range	#5E06A4	Mammalian KLK1
+Egfbp2_Mus_musculus_GeneID13647	range	#5E06A4	Mammalian KLK1
+Calu_KLK2	range	#5E06A4	Mammalian KLK1
+Calu_KLK1b	range	#5E06A4	Mammalian KLK1
+MumuKlk1b22	range	#5E06A4	Mammalian KLK1
+MumuKlk1b4	range	#5E06A4	Mammalian KLK1
+SopaB7	range	#5E06A4	Mammalian KLK1
+SopaB3	range	#5E06A4	Mammalian KLK1
+SopaB2	range	#5E06A4	Mammalian KLK1
+MumuKlk1	range	#5E06A4	Mammalian KLK1
+Calu_KLK5	range	#E90138	KLK5
+SopaK5	range	#E90138	KLK5
+Mumu_Klk5	range	#E90138	KLK5
+KLK5_Homo_sapiens_GeneID25818	range	#E90138	KLK5
+Hosa_KLK5	range	#E90138	KLK5
+EreuK5	range	#E90138	KLK5
+Phci_A_10	range	#E90138	KLK5
+Pesi_B_08	range	#D3FE09	KLK15
+Phci_A_11	range	#D3FE09	KLK15
+Laag_TKL2	range	#D3FE09	KLK15
+Oran_A_12	range	#D3FE09	KLK15
+Calu_KLK1a	range	#D3FE09	KLK15
+KLK15_Canis_lupus	range	#D3FE09	KLK15
+Hosa_KLK15	range	#D3FE09	KLK15
+Mumu_Klk15	range	#D3FE09	KLK15
+Calu_KLK15	range	#D3FE09	KLK15
+EreuK15	range	#D3FE09	KLK15
+Alsi_A_08	range	#D3FE09	KLK15
+SopaB9	range	#D3FE09	KLK15
+Alsi_B_02	range	#D3FE09	KLK15
+SopaB1	range	#D3FE09	KLK15
+SopaB8	range	#D3FE09	KLK15
+SopaB4	range	#D3FE09	KLK15
+SopaB10	range	#D3FE09	KLK15
+SopaB11	range	#D3FE09	KLK15
+SopaK10	range	#00FFFF	KLK10
+Mumu_Klk10	range	#00FFFF	KLK10
+EreuK10	range	#00FFFF	KLK10
+Calu_KLK10	range	#00FFFF	KLK10
+Hosa_KLK10	range	#00FFFF	KLK10
+Phci_A_05	range	#00FFFF	KLK10
+Oran_A_06	range	#00FFFF	KLK10
+SopaK13	range	#C177F7	KLK13
+Erinaceus_europaeus_GeneID103120804	range	#C177F7	KLK13
+EreuK13	range	#C177F7	KLK13
+Calu_KLK13	range	#C177F7	KLK13
+Hosa_KLK13	range	#C177F7	KLK13
+Mumu_Klk13	range	#C177F7	KLK13
+Oran_A_03	range	#C177F7	KLK13
+Prmu_A_01	range	#03704A	SVSP
+Crvi_A_05	range	#03704A	SVSP
+Crvi_A_01	range	#03704A	SVSP
+Crvi_A_03	range	#03704A	SVSP
+Prmu_A_11	range	#03704A	SVSP
+Prmu_A_05	range	#03704A	SVSP
+Prmu_A_04	range	#03704A	SVSP
+Crvi_A_09	range	#03704A	SVSP
+Crvi_A_08b	range	#03704A	SVSP
+Crvi_A_07	range	#03704A	SVSP
+Crvi_A_04	range	#03704A	SVSP
+Prmu_A_10	range	#03704A	SVSP
+Prmu_A_08	range	#03704A	SVSP
+Prmu_A_07	range	#03704A	SVSP
+Prmu_A_06	range	#03704A	SVSP
+Crvi_A_08a	range	#03704A	SVSP
+Crvi_A_02	range	#03704A	SVSP
+Crvi_A_10b	range	#03704A	SVSP
+Crvi_A_10a	range	#03704A	SVSP
+Oran_A_09	range	#804208	KLK7
+Phci_A_08	range	#804208	KLK7
+EreuK7	range	#804208	KLK7
+Calu_KLK7	range	#804208	KLK7
+Hosa_KLK7	range	#804208	KLK7
+Mumu_Klk7	range	#804208	KLK7
+Vako_B_01	range	#00FF7F	SVL
+Nana_SVL2	range	#00FF7F	SVL
+Laag_SVL1	range	#00FF7F	SVL
+Thel_SVL1	range	#00FF7F	SVL
+Alsi_A_04	range	#00FF7F	SVL
+Thel_SVL2	range	#00FF7F	SVL
+Euma1	range	#00FF7F	SVL
+Nana_SVL1	range	#00FF7F	SVL
+Pesi_A_07	range	#00FF7F	SVL
+Laag_TKL1	range	#0000FF	non-mammalian KLK1
+Xetr_TKL2	range	#0000FF	non-mammalian KLK1
+Xetr_TKL1	range	#0000FF	non-mammalian KLK1
+Xetr_TKL3	range	#0000FF	non-mammalian KLK1
+Vako_A_07	range	#0000FF	non-mammalian KLK1
+Euma2	range	#0000FF	non-mammalian KLK1
+Phci_A_07	range	#FABB75	KLK8
+Mumu_Klk8	range	#FABB75	KLK8
+Hosa_KLK8	range	#FABB75	KLK8
+EreuK8	range	#FABB75	KLK8
+Calu_KLK8	range	#FABB75	KLK8
+Oran_A_08	range	#FABB75	KLK8
+Vako_A_01	range	#8AE7FD	KLK14
+Oran_A_01	range	#8AE7FD	KLK14
+SopaK14	range	#8AE7FD	KLK14
+Hosa_KLK14	range	#8AE7FD	KLK14
+Calu_KLK14	range	#8AE7FD	KLK14
+Mumu_Klk14	range	#8AE7FD	KLK14
+Erueu_KLK14	range	#8AE7FD	KLK14
+Phci_A_01	range	#8AE7FD	KLK14
+Euma8	range	#8AE7FD	KLK14
+Laag_TKL8	range	#8AE7FD	KLK14
+Mumu_Klk4	range	#CB6075	KLK4
+Hosa_KLK4	range	#CB6075	KLK4
+EreuK4	range	#CB6075	KLK4
+Calu_KLK4	range	#CB6075	KLK4
+EreuK9	range	#5AA904	KLK9
+Phci_A_06	range	#5AA904	KLK9
+SopaK9	range	#5AA904	KLK9
+Mumu_Klk9	range	#5AA904	KLK9
+Calu_KLK9	range	#5AA904	KLK9
+Hosa_KLK9	range	#5AA904	KLK9
+Oran_A_07	range	#5AA904	KLK9
+SopaK11	range	#6462AF	KLK11
+Oran_A_05	range	#6462AF	KLK11
+Phci_A_04	range	#6462AF	KLK11
+Hosa_KLK11	range	#6462AF	KLK11
+Erinaceus_europaeus_GeneID103120805	range	#6462AF	KLK11
+EreuK11	range	#6462AF	KLK11
+Calu_KLK11	range	#6462AF	KLK11
+Mumu_Klk11	range	#6462AF	KLK11
+Oran_A_11	range	#38C1CE	KLK4/5
+Calu_KLK12	range	#68F932	KLK12
+Oran_A_13	range	#68F932	KLK12
+Oran_A_04	range	#68F932	KLK12
+SopaK12	range	#68F932	KLK12
+Hosa_KLK12	range	#68F932	KLK12
+EreuK12	range	#68F932	KLK12
+Mumu_Klk12	range	#68F932	KLK12
