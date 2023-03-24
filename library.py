@@ -8,6 +8,8 @@ from multiprocessing import Pool
 import numpy as np
 from scipy.spatial.distance import cdist
 
+import pytorch_lightning as pl
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -38,7 +40,7 @@ def seed_torch(seed=2021):
     
     
 #VAE class
-class VariationalAutoencoder(nn.Module):
+class VariationalAutoencoder(pl.LightningModule):
     """
     A simple VAE model.
     
@@ -109,8 +111,6 @@ class VariationalAutoencoder(nn.Module):
         return self.decode(z), mu, logvar
     
     #TODO add cross val
-    
-
 
 class LossFunction(nn.Module):
 
@@ -122,6 +122,21 @@ class LossFunction(nn.Module):
         mse_loss = self.mse(x_recon, x)
         return mse_loss
     
+    
+class makedataset(torch.utils.data.Dataset):
+
+    def __init__(self, headers, values):
+        self.headers = headers
+        self.values = values
+        assert len(self.headers) == len(self.values)
+
+    def __len__(self):
+        return len(self.values)
+
+    def __getitem__(self, index):
+        data = {self.headers[i]: self.values[index, i] for i in range(len(self.headers))}
+        return data
+
     
     
     
