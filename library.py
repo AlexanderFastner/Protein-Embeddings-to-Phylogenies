@@ -90,6 +90,8 @@ class VariationalAutoencoder(pl.LightningModule):
         return nn.Sequential(*layers)
         
     def encode(self, x):
+        print(x)
+        print(self.encoder(x))
         fc1 = F.relu(self.latent(self.encoder(x)))
         r1 = self.fc21(fc1)
         r2 = self.fc22(fc1)
@@ -135,9 +137,13 @@ class VariationalAutoencoder(pl.LightningModule):
         return loss    
     
     def validation_step(self, batch, batch_idx):
-        print(len(batch))
-        print(x, y = batch)
         x, y = batch
+        print("self(x): ", self(x))
+        print("len(self(x)): ", len(self(x)))
+        print(self(x)[0])
+        print(self(x)[1])
+        print(self(x)[2])
+        print("y: ", y)
         y_pred = self(x)
         loss = torch.nn.functional.cross_entropy(y_pred, y)
         acc = self.metrics_accuracy(y_pred, y)
@@ -161,20 +167,20 @@ class LossFunction(nn.Module):
     
 class makedataset(torch.utils.data.Dataset):
 
-    def __init__(self, headers, embedding):
+    def __init__(self, headers, embeddings):
         self.headers = headers
-        self.embedding = embedding
+        self.embedding = embeddings
         assert len(self.headers) == len(self.embedding)
+        self.data = list(zip(embeddings, headers))
 
     def __len__(self):
         return len(self.embedding)
 
+    #need a map of dataset[index] to return that embedding and its header
+    #each header and embeddinng is entered into a list and gets an index
     def __getitem__(self, index):
-        data = {"headers" : self.headers, "embedding" : self.embedding}
+        data = self.data[index]
         return data
-
-    
-    
     
     
     
