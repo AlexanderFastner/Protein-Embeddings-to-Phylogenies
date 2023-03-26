@@ -41,27 +41,8 @@ def seed_torch(seed=2021):
     
 #VAE class
 class VariationalAutoencoder(pl.LightningModule):
-    """
-    A simple VAE model.
-    
-    Inherits from nn.Module
-    https://pytorch.org/docs/stable/generated/torch.nn.Module.html
-    
-    Parameters
-    ----------
-    encoder_layers : list of int
-        The layer sizes for the VAE's encoder. The size of the first layer
-        should be the same as the input size, while the size of the last
-        layer should be the same as the size of the latent dimension.
-    latent_dim : int
-        The size of the latent space. 
-    decoder_layers : list of int
-        The layer sizes for the VAE's decoder. Should be the reverse of the
-        encoder layers.
-    """    
-    def __init__(self, encoder_layers, latent_dim, decoder_layers):
-        super(VariationalAutoencoder, self).__init__()
-    
+    def __init__(self, encoder_layers, latent_dim, decoder_layers): 
+        super(VariationalAutoencoder, self).__init__()    
         # encoder layers
         layers = zip(encoder_layers, encoder_layers[1:])
         layers = (self._add_layer(D_in, D_out) for D_in, D_out in layers)
@@ -82,16 +63,14 @@ class VariationalAutoencoder(pl.LightningModule):
         layers = (self._add_layer(D_in, D_out) for D_in, D_out in layers)
         self.decoder = nn.Sequential(*layers)
         del self.decoder[-1][-1]
-    
+        
     def _add_layer(self, D_in, D_out):
         layers = (nn.Linear(D_in, D_out),
-            nn.BatchNorm1d(num_features=D_out),
-            nn.ReLU())
+        nn.BatchNorm1d(num_features=D_out),
+        nn.ReLU())
         return nn.Sequential(*layers)
         
     def encode(self, x):
-        print(x)
-        print(self.encoder(x))
         fc1 = F.relu(self.latent(self.encoder(x)))
         r1 = self.fc21(fc1)
         r2 = self.fc22(fc1)
@@ -111,75 +90,65 @@ class VariationalAutoencoder(pl.LightningModule):
         mu, logvar = self.encode(x)
         z = self.reparameterize(mu, logvar)
         return self.decode(z), mu, logvar
+
+    def kl_divergence_loss(self, mu, logvar):
+        kl_loss = -0.5 * torch.sum(1 + logvar - mu**2 - torch.exp(logvar))
+        return kl_loss
     
     def training_step(self, batch, batch_idx):
-        # unpack the data
-        x, y = batch
-
-        # set the model to train
-        self.train()
-
-        # compute the output
-        y_hat = self(x)
-
-        # compute the loss
-        loss = self.loss(y_hat, y)
-
-        # log the metrics
-        self.log('train_loss', loss)
-
-        # compute the gradients
-        loss.backward()
-
-        # update the weights
-        self.optimizer.step()
-
-        return loss    
+        x, _ = batch
+        out, mu, logvar = self.forward(x)
+        recon_loss = self.reconstruction_loss(x, out)
+        kl_loss = self.kl_divergence_loss(mu, logvar)
+        loss = recon_loss + kl_loss
+        logs = {'reconstruction_loss': recon_loss, 'kl_loss': kl_loss}
+        return {'loss': loss, 'log': logs}    
     
     def validation_step(self, batch, batch_idx):
-        x, y = batch
-        print("self(x): ", self(x))
-        print("len(self(x)): ", len(self(x)))
-        print(self(x)[0])
-        print(self(x)[1])
-        print(self(x)[2])
-        print("y: ", y)
-        y_pred = self(x)
-        loss = torch.nn.functional.cross_entropy(y_pred, y)
-        acc = self.metrics_accuracy(y_pred, y)
-        batch_logs = {'val_loss': loss, 'val_acc': acc}
-        return {'val_loss': loss, 'log': batch_logs}
+        x, _ = batch
+        out, mu, logvar = self.forward(x)
+        recon_loss = self.reconstruction_loss(x, out)
+        kl_loss = self.kl_divergence_loss(mu, logvar)
+        logs = {'reconstruction_loss': recon_loss, 'kl_loss': kl_loss}
+        return {'log': logs}
     
     def configure_optimizers(self):
         optimizer = optim.Adam(self.parameters(), lr=1e-3)
         return optimizer
     
-class LossFunction(nn.Module):
+    def reconstruction_loss(self, x, out):
+        recon_loss = F.mse_loss(x, out)
+        return recon_loss
+    
+class LossFunction(pl.LightningModule):
+    
+    def __init__(self, embeddings_dim):
+        super().__init__()
+        self.embeddings_dim = embeddings_dim
 
-    def __init__(self):
-        super(LossFunction, self).__init__()
-        self.mse = nn.MSELoss(reduction="sum")
-
-    def forward(self, x_recon, x, mu, logvar):
-        mse_loss = self.mse(x_recon, x)
-        return mse_loss
+    def forward(self, x, recon_x, mu, logvar):
+        BCE = nn.functional.binary_cross_entropy(recon_x, x, reduction='sum')
+        KLD = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
+        return BCE + KLD
     
     
 class makedataset(torch.utils.data.Dataset):
 
     def __init__(self, headers, embeddings):
         self.headers = headers
-        self.embedding = embeddings
-        assert len(self.headers) == len(self.embedding)
+        self.embeddings = embeddings
+        assert len(self.headers) == len(self.embeddings)
         self.data = list(zip(embeddings, headers))
 
     def __len__(self):
-        return len(self.embedding)
+        return len(self.data)
 
     #need a map of dataset[index] to return that embedding and its header
     #each header and embeddinng is entered into a list and gets an index
     def __getitem__(self, index):
         data = self.data[index]
+        #print("_getitem_", index)
+        #print("self.data[index]", self.data[index])
         return data
     
     
