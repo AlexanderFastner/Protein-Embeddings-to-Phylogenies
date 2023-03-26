@@ -102,6 +102,8 @@ class VariationalAutoencoder(pl.LightningModule):
         kl_loss = self.kl_divergence_loss(mu, logvar)
         loss = recon_loss + kl_loss
         logs = {'reconstruction_loss': recon_loss, 'kl_loss': kl_loss}
+        values = {"loss": loss, 'reconstruction_loss': recon_loss, 'kl_loss': kl_loss}
+        self.log_dict(values)
         return {'loss': loss, 'log': logs}    
     
     def validation_step(self, batch, batch_idx):
