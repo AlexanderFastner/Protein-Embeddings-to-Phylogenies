@@ -111,7 +111,10 @@ class VariationalAutoencoder(pl.LightningModule):
         out, mu, logvar = self.forward(x)
         recon_loss = self.reconstruction_loss(x, out)
         kl_loss = self.kl_divergence_loss(mu, logvar)
+        loss = recon_loss + kl_loss
         logs = {'reconstruction_loss': recon_loss, 'kl_loss': kl_loss}
+        val_loss = {"validation_loss": loss}
+        self.log_dict(val_loss)
         return {'log': logs}
     
     def configure_optimizers(self):
