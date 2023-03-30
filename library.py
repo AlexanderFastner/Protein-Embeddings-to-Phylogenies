@@ -175,61 +175,72 @@ class makepredictset(torch.utils.data.Dataset):
     
     
     
-class neighbor_joining(torch.utils.data.Dataset):
+class distance_metric(torch.utils.data.Dataset):
     
-    def __init__(self, embeddings, headers):
-        self.headers = headers
-        self.embeddings = embeddings
-        self.distmat = Metrics.cosine(embeddings, embeddings)
+    def __init__(self, embedding):
+        self.embedding = embedding
+        
+    
+    def get_metric(self, embedding):
+        self.distmat = Metrics.cosine(embedding, embedding)
         # distmat = Metrics.ts_ss(embedding, embedding) # make sure this line uses the correct distance metric
-        return neighbor_joining_alg(self.distmat, self.headers)
+        return self.distmat
+    
+    
 
-    def neighbor_joining_alg(self, distmat, names):
-        """
-        Builds a tree from a distance matrix using the NJ algorithm using the
-        original algorithm published by Saitou and Nei.
+class neighbor_joining(torch.utils.data.Dataset):
+    """
+    Builds a tree from a distance matrix using the NJ algorithm using the
+    original algorithm published by Saitou and Nei.
 
-        Parameters
-        ----------
-        distmat : np.ndarray
-            a square, symmetrical distance matrix of size (n, n)
-        names : list of str
-            list of size (n) containing names corresponding to the distance matrix
+    Parameters
+    ----------
+    distmat : np.ndarray
+        a square, symmetrical distance matrix of size (n, n)
+    names : list of str
+        list of size (n) containing names corresponding to the distance matrix
 
-        Returns
-        -------
-        tree : str
-            a newick-formatted tree
-        """
-        def join_ndx(D, n):
-            # calculate the Q matrix and find the pair to join
-            Q  = np.zeros((n, n))
-            Q += D.sum(1)
-            Q += Q.T
-            Q *= -1.
-            Q += (n - 2.) * D
-            np.fill_diagonal(Q, 1.) # prevent from choosing the diagonal
-            return np.unravel_index(Q.argmin(), Q.shape)
+    Returns
+    -------
+    tree : str
+        a newick-formatted tree
+    """
+    def __init__(self, distmat, headers):
+        self.distmat = distmat
+        self.headers = headers
+        
+        
+    def join_ndx(D, n):
+        # calculate the Q matrix and find the pair to join
+        Q  = np.zeros((n, n))
+        Q += D.sum(1)
+        Q += Q.T
+        Q *= -1.
+        Q += (n - 2.) * D
+        np.fill_diagonal(Q, 1.) # prevent from choosing the diagonal
+        return np.unravel_index(Q.argmin(), Q.shape)
 
-        def branch_lengths(D, n, i, j):
-            i_to_j = float(D[i, j])
-            i_to_u = float((.5 * i_to_j) + ((D[i].sum() - D[j].sum()) / (2. * (n - 2.))))
-            if i_to_u < 0.:
-                i_to_u = 0.
-            j_to_u = i_to_j - i_to_u
-            if j_to_u < 0.:
-                j_to_u = 0.
-            return i_to_u, j_to_u
+    def branch_lengths(D, n, i, j):
+        i_to_j = float(D[i, j])
+        i_to_u = float((.5 * i_to_j) + ((D[i].sum() - D[j].sum()) / (2. * (n - 2.))))
+        if i_to_u < 0.:
+            i_to_u = 0.
+        j_to_u = i_to_j - i_to_u
+        if j_to_u < 0.:
+            j_to_u = 0.
+        return i_to_u, j_to_u
 
-        def update_distance(D, n1, mask, i, j):
-            D1 = np.zeros((n1, n1))
-            D1[0, 1:] = 0.5 * (D[i,mask] + D[j,mask] - D[i,j])
-            D1[0, 1:][D1[0, 1:] < 0] = 0
-            D1[1:, 0] = D1[0, 1:]
-            D1[1:, 1:] = D[:,mask][mask]
-            return D1
+    def update_distance(D, n1, mask, i, j):
+        D1 = np.zeros((n1, n1))
+        D1[0, 1:] = 0.5 * (D[i,mask] + D[j,mask] - D[i,j])
+        D1[0, 1:][D1[0, 1:] < 0] = 0
+        D1[1:, 0] = D1[0, 1:]
+        D1[1:, 1:] = D[:,mask][mask]
+        return D1
+    
+    def get_newick(self, distmat, headers):
 
-        t = names
+        t = headers
         D = distmat.copy()
         np.fill_diagonal(D, 0.)
 
@@ -237,14 +248,14 @@ class neighbor_joining(torch.utils.data.Dataset):
             n = D.shape[0]
             if n == 3:
                 break
-            ndx1, ndx2 = join_ndx(D, n)
-            len1, len2 = branch_lengths(D, n, ndx1, ndx2)
+            ndx1, ndx2 = neighbor_joining.join_ndx(D, n)
+            len1, len2 = neighbor_joining.branch_lengths(D, n, ndx1, ndx2)
             mask  = np.full(n, True, dtype=bool)
             mask[[ndx1, ndx2]] = False
             t = [f"({t[ndx1]}:{len1:.6f},{t[ndx2]}:{len2:.6f})"] + [i for b, i in zip(mask, t) if b]
-            D = update_distance(D, n-1, mask, ndx1, ndx2)
+            D = neighbor_joining.update_distance(D, n-1, mask, ndx1, ndx2)
 
-        len1, len2 = branch_lengths(D, n, 1, 2)
+        len1, len2 = neighbor_joining.branch_lengths(D, n, 1, 2)
         len0 = 0.5 * (D[1,0] + D[2,0] - D[1,2])
         if len0 < 0:
             len0 = 0
