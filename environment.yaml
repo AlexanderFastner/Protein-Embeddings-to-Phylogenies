@@ -22,4 +22,5 @@ dependencies:
       - jupyterlab
       - ipywidgets
       - pytorch-lightning
+      - h5py
 prefix: ~/anaconda/envs/FP_lightning

@@ -95,6 +95,8 @@ class VariationalAutoencoder(pl.LightningModule):
         kl_loss = -0.5 * torch.sum(1 + logvar - mu**2 - torch.exp(logvar))
         return kl_loss
     
+    #TODO add validation to tracking
+    
     def training_step(self, batch, batch_idx):
         x, _ = batch
         out, mu, logvar = self.forward(x)
@@ -102,8 +104,9 @@ class VariationalAutoencoder(pl.LightningModule):
         kl_loss = self.kl_divergence_loss(mu, logvar)
         loss = recon_loss + kl_loss
         logs = {'reconstruction_loss': recon_loss, 'kl_loss': kl_loss}
+        #values = {"validation_loss" : -1 ,"loss": loss, 'reconstruction_loss': recon_loss, 'kl_loss': kl_loss}
         values = {"loss": loss, 'reconstruction_loss': recon_loss, 'kl_loss': kl_loss}
-        self.log_dict(values)
+        self.log_dict(values, on_step=False, on_epoch=True)
         return {'loss': loss, 'log': logs}    
     
     def validation_step(self, batch, batch_idx):
@@ -113,8 +116,9 @@ class VariationalAutoencoder(pl.LightningModule):
         kl_loss = self.kl_divergence_loss(mu, logvar)
         loss = recon_loss + kl_loss
         logs = {'reconstruction_loss': recon_loss, 'kl_loss': kl_loss}
-        val_loss = {"validation_loss": loss}
-        self.log_dict(val_loss)
+        #val_loss = {"validation_loss" : loss ,"loss": -1, 'reconstruction_loss': -1, 'kl_loss': -1}
+        val_loss = {"validation_loss" : loss}
+        self.log_dict(val_loss, on_step=False, on_epoch=True)
         return {'log': logs}
     
     def configure_optimizers(self):
@@ -148,8 +152,6 @@ class makedataset(torch.utils.data.Dataset):
     def __len__(self):
         return len(self.data)
 
-    #need a map of dataset[index] to return that embedding and its header
-    #each header and embeddinng is entered into a list and gets an index
     def __getitem__(self, index):
         data = self.data[index]
         #print("_getitem_", index)
