@@ -129,6 +129,9 @@ class VariationalAutoencoder(pl.LightningModule):
         recon_loss = F.mse_loss(x, out)
         return recon_loss
     
+    def predict_step(self, batch, batch_idx, dataloader_idx=0):
+        return self(batch)
+    
 class LossFunction(pl.LightningModule):
     
     def __init__(self, embeddings_dim):
@@ -159,13 +162,186 @@ class makedataset(torch.utils.data.Dataset):
         return data
     
     
+class makepredictset(torch.utils.data.Dataset):
+    
+    def __init__(self, embeddings):
+        self.embeddings = embeddings
+        self.data = embeddings
+        
+    def __len__(self):
+        return len(self.data)
+
+    
+    def __getitem__(self, index):
+        return self.data[index]
     
     
     
+class distance_metric(torch.utils.data.Dataset):
+    
+    def __init__(self, embedding):
+        self.embedding = embedding
+        
+    
+    def get_metric(self, embedding):
+        self.distmat = Metrics.cosine(embedding, embedding)
+        # distmat = Metrics.ts_ss(embedding, embedding) # make sure this line uses the correct distance metric
+        return self.distmat
     
     
+
+class neighbor_joining(torch.utils.data.Dataset):
+    """
+    Builds a tree from a distance matrix using the NJ algorithm using the
+    original algorithm published by Saitou and Nei.
+
+    Parameters
+    ----------
+    distmat : np.ndarray
+        a square, symmetrical distance matrix of size (n, n)
+    names : list of str
+        list of size (n) containing names corresponding to the distance matrix
+
+    Returns
+    -------
+    tree : str
+        a newick-formatted tree
+    """
+    def __init__(self, distmat, headers):
+        self.distmat = distmat
+        self.headers = headers
+        
+        
+    def join_ndx(D, n):
+        # calculate the Q matrix and find the pair to join
+        Q  = np.zeros((n, n))
+        Q += D.sum(1)
+        Q += Q.T
+        Q *= -1.
+        Q += (n - 2.) * D
+        np.fill_diagonal(Q, 1.) # prevent from choosing the diagonal
+        return np.unravel_index(Q.argmin(), Q.shape)
+
+    def branch_lengths(D, n, i, j):
+        i_to_j = float(D[i, j])
+        i_to_u = float((.5 * i_to_j) + ((D[i].sum() - D[j].sum()) / (2. * (n - 2.))))
+        if i_to_u < 0.:
+            i_to_u = 0.
+        j_to_u = i_to_j - i_to_u
+        if j_to_u < 0.:
+            j_to_u = 0.
+        return i_to_u, j_to_u
+
+    def update_distance(D, n1, mask, i, j):
+        D1 = np.zeros((n1, n1))
+        D1[0, 1:] = 0.5 * (D[i,mask] + D[j,mask] - D[i,j])
+        D1[0, 1:][D1[0, 1:] < 0] = 0
+        D1[1:, 0] = D1[0, 1:]
+        D1[1:, 1:] = D[:,mask][mask]
+        return D1
     
+    def get_newick(self, distmat, headers):
+
+        t = headers
+        D = distmat.copy()
+        np.fill_diagonal(D, 0.)
+
+        while True:
+            n = D.shape[0]
+            if n == 3:
+                break
+            ndx1, ndx2 = neighbor_joining.join_ndx(D, n)
+            len1, len2 = neighbor_joining.branch_lengths(D, n, ndx1, ndx2)
+            mask  = np.full(n, True, dtype=bool)
+            mask[[ndx1, ndx2]] = False
+            t = [f"({t[ndx1]}:{len1:.6f},{t[ndx2]}:{len2:.6f})"] + [i for b, i in zip(mask, t) if b]
+            D = neighbor_joining.update_distance(D, n-1, mask, ndx1, ndx2)
+
+        len1, len2 = neighbor_joining.branch_lengths(D, n, 1, 2)
+        len0 = 0.5 * (D[1,0] + D[2,0] - D[1,2])
+        if len0 < 0:
+            len0 = 0
+        self.newick = f'({t[1]}:{len1:.6f},{t[0]}:{len0:.6f},{t[2]}:{len2:.6f});'
+        return self.newick
     
+
+class Metrics:
+    """
+    Functions for calculating distance matrices. I put them inside of a class to keep
+    them organized in one place.
     
+    Given two arrays of size (x, e) and (y, e), calculates a distance matrix
+    of size (x, y).
     
+    Example:
+    >> A = np.random.random((100,1028))
+    >> B = np.random.random((200,1028))
+    >>
+    >> Metrics.ts_ss(A, B)
+    """
+    @staticmethod
+    def cosine(x1, x2):
+        """
+        >> from scipy.spatial.distance import cdist
+        >> cdist(x1, x2, metric='cosine')
+        """
+        return cdist(x1, x2, metric='cosine')
+    
+    @staticmethod
+    def euclidean(x1, x2):
+        """
+        >> from scipy.spatial.distance import cdist
+        >> cdist(x1, x2, metric='euclidean')
+        """
+        return cdist(x1, x2, metric='euclidean')
+    
+    @staticmethod
+    def manhattan(x1, x2):
+        """
+        >> from scipy.spatial.distance import cdist
+        >> cdist(x1, x2, metric='cityblock')
+        """
+        return cdist(x1, x2, metric='cityblock')
+
+    @staticmethod
+    def jensenshannon(x1, x2):
+        """
+        >> from scipy.spatial.distance import cdist
+        >> from scipy.special import softmax
+        >> cdist(softmax(x1), softmax(x2), metric='jensenshannon')
+        """
+        x1 = softmax(x1, axis=1) # used to remove negative values
+        x2 = softmax(x2, axis=1)
+        return cdist(x1, x2, metric='jensenshannon')
+    
+    @staticmethod
+    def ts_ss(x1, x2):
+        """
+        Stands for triangle area similarity (TS) and sector area similarity (SS)
+        For more information: https://github.com/taki0112/Vector_Similarity
+        """
+        x1_norm = np.linalg.norm(x1, axis=-1)[:,np.newaxis]
+        x2_norm = np.linalg.norm(x2, axis=-1)[:,np.newaxis]
+        x_dot = x1_norm @ x2_norm.T
+
+        ### cosine similarity
+        cosine_sim = 1 - cdist(x1, x2, metric='cosine')
+        cosine_sim[cosine_sim != cosine_sim] = 0
+        cosine_sim = np.clip(cosine_sim, -1, 1, out=cosine_sim)
+
+        ### euclidean_distance
+        euclidean_dist = cdist(x1, x2, metric='euclidean')
+
+        ### triangle_area_similarity
+        theta = np.arccos(cosine_sim) + np.radians(10)
+        triangle_similarity = (x_dot * np.abs(np.sin(theta))) / 2
+
+        ### sectors area similarity
+        magnitude_diff = np.abs(x1_norm - x2_norm.T)
+        ed_plus_md = euclidean_dist + magnitude_diff
+        sector_similarity =  ed_plus_md * ed_plus_md * theta * np.pi / 360
+
+        ### hybridize
+        similarity = triangle_similarity * sector_similarity
+        return similarity
     
