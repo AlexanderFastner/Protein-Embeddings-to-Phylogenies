@@ -7,6 +7,7 @@ from multiprocessing import Pool
 
 import numpy as np
 from scipy.spatial.distance import cdist
+import treeswift
 
 import pytorch_lightning as pl
 
@@ -159,19 +160,7 @@ class makedataset(torch.utils.data.Dataset):
         #print("self.data[index]", self.data[index])
         return data
     
-    
-class makepredictset(torch.utils.data.Dataset):
-    
-    def __init__(self, embeddings):
-        self.embeddings = embeddings
-        self.data = embeddings
-        
-    def __len__(self):
-        return len(self.data)
 
-    
-    def __getitem__(self, index):
-        return self.data[index]
     
     
     
@@ -181,9 +170,16 @@ class distance_metric(torch.utils.data.Dataset):
         self.embedding = embedding
         
     
-    def get_metric(self, embedding):
-        self.distmat = Metrics.cosine(embedding, embedding)
-        # distmat = Metrics.ts_ss(embedding, embedding) # make sure this line uses the correct distance metric
+    def get_metric(self, embedding, metric):
+        if metric == "cosine":
+            self.distmat = Metrics.cosine(embedding, embedding)
+        if metric == "euclidean":
+            self.distmat = Metrics.euclidean(embedding, embedding)
+        if metric == "manhattan":
+            self.distmat = Metrics.manhattan(embedding, embedding)
+        if metric == "ts_ss":
+            self.distmat = Metrics.ts_ss(embedding, embedding)
+       
         return self.distmat
     
     
@@ -267,10 +263,10 @@ class Metrics:
     """
     Functions for calculating distance matrices. I put them inside of a class to keep
     them organized in one place.
-    
+
     Given two arrays of size (x, e) and (y, e), calculates a distance matrix
     of size (x, y).
-    
+
     Example:
     >> A = np.random.random((100,1028))
     >> B = np.random.random((200,1028))
@@ -343,3 +339,33 @@ class Metrics:
         similarity = triangle_similarity * sector_similarity
         return similarity
     
+def cophenetic_distmat(tree, names):
+    """
+    Calculates the all-versus-all distance matrix of a tree based on the
+    cophenetic distances.
+    
+    Parameters
+    ----------
+    tree : str
+        a newick-formatted tree
+    names : list of str
+        a list of names contained within the tree. the order of the names provided
+        in the list will be used to determine the order of the output.
+    
+    Returns
+    -------
+    cophmat : np.ndarray
+        a square, symmetrical distance matrix
+    """
+    tree = treeswift.read_tree_newick(tree) if type(tree) is str else tree
+    cophdic = tree.distance_matrix()
+    node2name = {i:i.get_label() for i in cophdic.keys()}
+    unique_names = set(node2name.values())
+    assert len(node2name)==len(set(node2name))
+    cophdic = {node2name[k1]:{node2name[k2]:cophdic[k1][k2] for k2 in cophdic[k1]} for k1 in cophdic.keys()}
+    assert all(i in unique_names for i in names)
+    cophmat = np.zeros([len(names)]*2)
+    for ni, i in enumerate(names):
+        for nj, j in enumerate(names[:ni]):
+            cophmat[ni][nj] = cophmat[nj][ni] = cophdic[i][j]
+    return cophmat    
