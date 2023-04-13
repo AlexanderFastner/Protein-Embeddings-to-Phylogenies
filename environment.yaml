@@ -14,7 +14,7 @@ dependencies:
       - pandas==1.5.2
       - scipy==1.5.4
       - scikit-learn==0.24.2
-      - matplotlib==3.3.4
+      - matplotlib==3.5.2
       - bokeh==3.0.2
       - ete3==3.1.1
       - pyqt5==5.12.3
@@ -23,4 +23,6 @@ dependencies:
       - ipywidgets
       - pytorch-lightning
       - h5py
+      - dendropy
+      - pycirclize
 prefix: ~/anaconda/envs/FP_lightning
