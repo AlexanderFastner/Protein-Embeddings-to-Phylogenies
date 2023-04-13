@@ -1,2 +1,6 @@
 checkpoints/
+<<<<<<< HEAD
 lightning_logs/
+=======
+lightning_logs/
+>>>>>>> 7742fb5cf26aae03d8bb047a4a30a74141a28f43
