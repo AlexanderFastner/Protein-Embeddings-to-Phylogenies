@@ -6,7 +6,8 @@ import random
 from multiprocessing import Pool
 
 import numpy as np
-from scipy.spatial.distance import cdist
+from scipy.spatial.distance import cdist, squareform
+from scipy.cluster import hierarchy
 import treeswift
 
 import pytorch_lightning as pl
@@ -103,7 +104,7 @@ class VariationalAutoencoder(pl.LightningModule):
         kl_loss = self.kl_divergence_loss(mu, logvar)
         loss = recon_loss + kl_loss
         logs = {'reconstruction_loss': recon_loss, 'kl_loss': kl_loss}
-        values = {"train_loss": loss, 'reconstruction_loss': recon_loss, 'kl_loss': kl_loss}
+        values = {"loss": loss, 'reconstruction_loss': recon_loss, 'kl_loss': kl_loss}
         self.log_dict(values)
         return {'loss': loss, 'log': logs}    
     
@@ -339,6 +340,7 @@ class Metrics:
         similarity = triangle_similarity * sector_similarity
         return similarity
     
+
 def cophenetic_distmat(tree, names):
     """
     Calculates the all-versus-all distance matrix of a tree based on the
@@ -368,4 +370,40 @@ def cophenetic_distmat(tree, names):
     for ni, i in enumerate(names):
         for nj, j in enumerate(names[:ni]):
             cophmat[ni][nj] = cophmat[nj][ni] = cophdic[i][j]
-    return cophmat    
+    return cophmat 
+
+
+
+def upgma(distmat, names):
+    """
+    Builds a tree from a distance matrix using the UPGMA algorithm.
+    
+    Parameters
+    ----------
+    distmat : np.ndarray
+        a square, symmetrical distance matrix of size (n, n)
+    names : list of str
+        list of size (n) containing names corresponding to the distance matrix
+    
+    Returns
+    -------
+    tree : str
+        a newick-formatted tree
+    """
+    D = squareform(distmat, checks=False)
+    Z = hierarchy.linkage(D, method='average', optimal_ordering=False)
+    def to_newick(node, newick, parentdist, leaf_names):
+        if node.is_leaf():
+            return f'{leaf_names[node.id]}:{parentdist-node.dist:.6f}{newick}'
+        else:
+            if len(newick) > 0:
+                newick = f'):{parentdist - node.dist:.6f}{newick}'
+            else:
+                newick = ');'
+            newick = to_newick(node.get_left(), newick, node.dist, leaf_names)
+            newick = to_newick(node.get_right(), f',{newick}', node.dist, leaf_names)
+            newick = f'({newick}'
+            return newick
+    tree = hierarchy.to_tree(Z, False)
+    return to_newick(tree, "", tree.dist, names)
+
