@@ -141,6 +141,11 @@ class LossFunction(pl.LightningModule):
         KLD = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
         return BCE + KLD
     
+    #def forward(self, x, recon_x, mu, logvar):
+    #    MSE = nn.functional.mse_loss(recon_x, x, reduction='sum')
+    #    KLD = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
+    #    return MSE + KLD
+    
     
 class makedataset(torch.utils.data.Dataset):
 
