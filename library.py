@@ -136,15 +136,17 @@ class LossFunction(pl.LightningModule):
         super().__init__()
         self.embeddings_dim = embeddings_dim
 
-    def forward(self, x, recon_x, mu, logvar):
-        BCE = nn.functional.binary_cross_entropy(recon_x, x, reduction='sum')
-        KLD = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
-        return BCE + KLD
-    
+    #Binary cross entropy loss
     #def forward(self, x, recon_x, mu, logvar):
-    #    MSE = nn.functional.mse_loss(recon_x, x, reduction='sum')
+    #    BCE = nn.functional.binary_cross_entropy(recon_x, x, reduction='sum')
     #    KLD = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
-    #    return MSE + KLD
+    #    return BCE + KLD
+    
+    #Mean Squared error loss
+    def forward(self, x, recon_x, mu, logvar):
+        MSE = nn.functional.mse_loss(recon_x, x, reduction='sum')
+        KLD = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
+        return MSE + KLD
     
     
 class makedataset(torch.utils.data.Dataset):
