@@ -58,7 +58,7 @@ class VariationalAutoencoder(pl.LightningModule):
         # sampling vector epsilon
         self.fc3 = self._add_layer(latent_dim, latent_dim)
         self.fc4 = self._add_layer(latent_dim, decoder_layers[0])
-        self.relu = nn.ReLU()
+        self.sigmoid = nn.Sigmoid()
         
         # decoder layers
         layers = zip(decoder_layers, decoder_layers[1:])
@@ -69,11 +69,11 @@ class VariationalAutoencoder(pl.LightningModule):
     def _add_layer(self, D_in, D_out):
         layers = (nn.Linear(D_in, D_out),
         nn.BatchNorm1d(num_features=D_out),
-        nn.ReLU())
+        nn.Sigmoid())
         return nn.Sequential(*layers)
         
     def encode(self, x):
-        fc1 = F.relu(self.latent(self.encoder(x)))
+        fc1 = F.sigmoid(self.latent(self.encoder(x)))
         r1 = self.fc21(fc1)
         r2 = self.fc22(fc1)
         return r1, r2
@@ -84,8 +84,8 @@ class VariationalAutoencoder(pl.LightningModule):
         return eps.mul(std).add_(mu)
 
     def decode(self, z):
-        fc3 = self.relu(self.fc3(z))
-        fc4 = self.relu(self.fc4(fc3))
+        fc3 = self.sigmoid(self.fc3(z))
+        fc4 = self.sigmoid(self.fc4(fc3))
         return self.decoder(fc4)
 
     def forward(self, x):
