@@ -19,7 +19,7 @@ from torch import nn, optim
 from torch.autograd import Variable
 from torch.utils.data import Dataset, DataLoader
 
-from ete3 import Tree, TextFace, TreeStyle, NodeStyle
+#from ete3 import Tree, TextFace, TreeStyle, NodeStyle
 
 def seed_torch(seed=2021):
     """
@@ -136,10 +136,17 @@ class LossFunction(pl.LightningModule):
         super().__init__()
         self.embeddings_dim = embeddings_dim
 
+    #Binary cross entropy loss
+    #def forward(self, x, recon_x, mu, logvar):
+    #    BCE = nn.functional.binary_cross_entropy(recon_x, x, reduction='sum')
+    #    KLD = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
+    #    return BCE + KLD
+    
+    #Mean Squared error loss
     def forward(self, x, recon_x, mu, logvar):
-        BCE = nn.functional.binary_cross_entropy(recon_x, x, reduction='sum')
+        MSE = nn.functional.mse_loss(recon_x, x, reduction='sum')
         KLD = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
-        return BCE + KLD
+        return MSE + KLD
     
     
 class makedataset(torch.utils.data.Dataset):
