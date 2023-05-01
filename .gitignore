@@ -1,3 +1,5 @@
 checkpoints/
 lightning_logs/
 .ipynb_checkpoints/
+chumby_data/
+out_dir/
