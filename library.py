@@ -130,6 +130,36 @@ class VariationalAutoencoder(pl.LightningModule):
     def predict_step(self, batch, batch_idx, dataloader_idx=0):
         return self(batch)
     
+    
+    def resample(self, n_samples):
+        """
+        Resamples the fixed size embeddings (self.X) using the VAE.
+        
+        Parameters
+        ----------
+        n_samples : int
+            number of samples to generate.
+        
+        Returns
+        -------
+        output : np.ndarray
+            for a VAE trained on a dataset of fixed size embeddings of size (n, e)
+            where (n) is each example and (e) is the fixed size embedding of each
+            example. returns a array of resampled embeddings of size (s, n, e) where
+            (s) is the n_samples specified in the input parameters.
+        """
+        torch.cuda.empty_cache()
+        torch.set_num_threads(self.threads)
+        self.model.eval()
+        X_r = np.zeros((n_samples,*self.X.shape))
+        with torch.no_grad():
+            for index in range(X_r.shape[0]):
+                data = next(iter(self.dataloader))
+                data = data.to(self.device)
+                output, mu, logvar = self.model(data)
+                X_r[index] = output.cpu()
+        return X_r
+    
 class LossFunction(pl.LightningModule):
     
     def __init__(self, embeddings_dim):
@@ -406,4 +436,78 @@ def upgma(distmat, names):
             return newick
     tree = hierarchy.to_tree(Z, False)
     return to_newick(tree, "", tree.dist, names)
+
+
+
+def get_bipartitions(tree, names):
+    """
+    Identify all bipartitions within a tree.
+    
+    Parameters
+    ----------
+    tree : ete3.Tree
+        a tree object
+    names : list of str
+        a list of names contained within the tree. the order of the names provided
+        in the list will be used to determine the order of the output.
+    
+    Returns
+    -------
+    bits : np.ndarray
+        bipartition array of size (c, n) where c is each clade with more than one
+        member on the tree and (n) is all taxa names on the tree. a bipartition
+        for a given clade is represented based on which name is in the clade or not,
+        0 if present and 1 if not present
+    nodes : np.ndarray of ete3.Tree
+        nodes corresponding to the (c) bipartitions
+    """
+    tips = set(i.name for i in tree.get_leaves())
+    assert all(i in tips for i in names)
+    
+    n2i = {i: n for n, i in enumerate(names)}
+    generator  = (n for n in tree.traverse("postorder") if not n.is_leaf())
+    
+    size  = len(names)
+    bits  = np.zeros((size, size), dtype=np.int)
+    nodes = np.zeros((size), dtype=object)
+    
+    for n, node in enumerate(generator):
+        mask = [n2i[i.name] for i in node.get_leaves() if i.name in n2i]
+        bits[n, mask] = 1
+        if bits[n, 0] == 1:
+            bits[n] = 1 - bits[n]
+        nodes[n] = node
+    
+    bitsum  = bits.sum(1)
+    include = (bitsum > 1) * (bitsum < size-1)
+    
+    return bits[include], nodes[include]
+
+
+
+def get_support(reference_bits, sample_tree, names):
+    """
+    Get the branch support of a reference tree, given its bipartitions.
+    
+    Parameters
+    ----------
+    reference_bits : np.ndarray
+        bipartition array of size (c, n) where c is each clade with more than one
+        member on the tree and (n) is all taxa names on the tree. a bipartition
+        for a given clade is represented based on which name is in the clade or not,
+        0 if present and 1 if not present
+    sample_tree : ete3.Tree
+        a replicate tree
+    names : list of str
+        a list of names contained within the tree. the order of the names provided
+        in the list will be used to map to the bipartitions.
+    
+    Returns
+    -------
+    out : np.ndarray
+        for each reference bipartition, 1 if the bipartition is in the sample and
+        0 if the bipartition is not
+    """
+    sample_bits = get_bipartitions(sample_tree, names)[0]
+    return cdist(reference_bits, sample_bits, metric='cityblock').min(1) == 0
 
