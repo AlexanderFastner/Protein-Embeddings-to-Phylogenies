@@ -19,7 +19,7 @@ from torch import nn, optim
 from torch.autograd import Variable
 from torch.utils.data import Dataset, DataLoader
 
-from ete3 import Tree, TextFace, TreeStyle, NodeStyle
+#from ete3 import Tree, TextFace, TreeStyle, NodeStyle
 
 def seed_torch(seed=2021):
     """
