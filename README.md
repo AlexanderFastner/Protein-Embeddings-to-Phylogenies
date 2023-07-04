@@ -1,4 +1,4 @@
-# PyTorch_Lightning_VAE
+# Protein Embeddings to Phylogenies
 
 This is an exploration of using dimensionality reduction to create Phylogenetic trees faster than traditional methods.
 
